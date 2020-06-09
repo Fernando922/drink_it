@@ -1,4 +1,4 @@
-package com.drinkit;
+package br.com.nextjob.drinkit;
 
 import com.facebook.react.ReactActivity;
 
