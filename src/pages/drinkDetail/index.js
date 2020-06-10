@@ -62,8 +62,15 @@ export default function DrinkDetail() {
   }, [drink]);
 
   useEffect(() => {
+    let param;
+    if (!route.params) {
+      param = '/random.php';
+    } else {
+      param = `/lookup.php?i=${route.params.id}`;
+    }
+
     api
-      .get(`/lookup.php?i=${route.params.id}`)
+      .get(param)
       .then((res) => formatData(res.data.drinks[0]))
       .catch(() =>
         Alert.alert('Ops!', 'An error occurred please try again later')

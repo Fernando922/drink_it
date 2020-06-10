@@ -16,10 +16,11 @@ export const Title = styled.Text`
 export const ContainerTextHeader = styled.View`
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const TextVersion = styled.Text`
-  font-size: 16px;
+  font-size: 14px;
   font-family: ${theme.fontBold};
   color: ${theme.colors.background};
 `;
@@ -57,6 +58,7 @@ export const TitleGroup = styled.Text`
 
 export const ButtonRoute = styled.TouchableOpacity`
   margin-bottom: ${(props) => (props.last ? '24px' : '8px')};
+  margin-left: 8px;
 `;
 
 export const TextButtonRoute = styled.Text`

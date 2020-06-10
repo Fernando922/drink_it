@@ -1,4 +1,6 @@
 import React from 'react';
+import { BackHandler, Alert } from 'react-native';
+import PropTypes from 'prop-types';
 import {
   Container,
   Title,
@@ -18,7 +20,33 @@ import {
 
 const profileImage = require('../../assets/images/splash.jpg');
 
-export default function Drawer() {
+export default function Drawer({ navigation }) {
+  function selectRoute(route) {
+    navigation.navigate('Main', {
+      screen: 'Drinks',
+      params: { query: route },
+    });
+  }
+
+  function exitApp() {
+    Alert.alert('Close App', 'Will you really leave us?', [
+      { text: 'no' },
+      { text: 'sorry!', onPress: () => BackHandler.exitApp() },
+    ]);
+  }
+
+  function findYourDrink() {
+    navigation.navigate('Search', {
+      screen: 'SearchDrinks',
+    });
+  }
+
+  function chooseForMe() {
+    navigation.navigate('Main', {
+      screen: 'DrinkDetail',
+    });
+  }
+
   return (
     <Container>
       <Header>
@@ -30,35 +58,35 @@ export default function Drawer() {
       </Header>
       <Body>
         <TitleGroup>Categories</TitleGroup>
-        <ButtonRoute>
+        <ButtonRoute onPress={() => selectRoute('a=Alcoholic')}>
           <TextButtonRoute>Alcoholics</TextButtonRoute>
         </ButtonRoute>
-        <ButtonRoute>
+        <ButtonRoute onPress={() => selectRoute('a=Non_Alcoholic')}>
           <TextButtonRoute>Non Alcoholic</TextButtonRoute>
         </ButtonRoute>
-        <ButtonRoute>
+        <ButtonRoute onPress={() => selectRoute('c=Ordinary_Drink')}>
           <TextButtonRoute>Ordinary Drinks</TextButtonRoute>
         </ButtonRoute>
-        <ButtonRoute last>
+        <ButtonRoute last onPress={() => selectRoute('c=Cocktail')}>
           <TextButtonRoute>Cocktails</TextButtonRoute>
         </ButtonRoute>
         <TitleGroup>Types of Glasses</TitleGroup>
-        <ButtonRoute>
+        <ButtonRoute onPress={() => selectRoute('g=Cocktail_glass')}>
           <TextButtonRoute>Cocktail Glass</TextButtonRoute>
         </ButtonRoute>
-        <ButtonRoute last>
+        <ButtonRoute last onPress={() => selectRoute('g=Champagne_flute')}>
           <TextButtonRoute>Champagne Flute</TextButtonRoute>
         </ButtonRoute>
         <TitleGroup>Other Options</TitleGroup>
-        <ButtonRoute>
+        <ButtonRoute onPress={findYourDrink}>
           <TextButtonRoute>Find Your Drink</TextButtonRoute>
         </ButtonRoute>
-        <ButtonRoute>
+        <ButtonRoute onPress={chooseForMe}>
           <TextButtonRoute>Choose For Me!</TextButtonRoute>
         </ButtonRoute>
       </Body>
       <Footer>
-        <ButtonExit>
+        <ButtonExit onPress={exitApp}>
           <ButtonExitIcon />
           <ButtonExitText>Exit the Application</ButtonExitText>
         </ButtonExit>
@@ -66,3 +94,9 @@ export default function Drawer() {
     </Container>
   );
 }
+
+Drawer.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
