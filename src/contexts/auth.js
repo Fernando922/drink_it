@@ -4,18 +4,16 @@ import PropTypes from 'prop-types';
 const AuthContext = createContext({});
 
 export function AuthProvider({ children }) {
-  const [loading, setLoading] = useState(true);
+  const [delay, setDelay] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      setLoading(false);
+      setDelay(false);
     }, 2000);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ delay: loading }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={{ delay }}>{children}</AuthContext.Provider>
   );
 }
 

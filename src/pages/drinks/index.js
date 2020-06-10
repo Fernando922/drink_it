@@ -34,7 +34,7 @@ export default function Drinks() {
                 drinkName={item.strDrink}
               />
             )}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.idDrink}
           />
         )}
       </Container>
