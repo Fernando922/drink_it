@@ -63,7 +63,7 @@ export default function DrinkDetail() {
 
   useEffect(() => {
     let param;
-    if (!route.params.id) {
+    if (!route.params?.id) {
       param = '/random.php';
     } else {
       param = `/lookup.php?i=${route.params.id}`;
