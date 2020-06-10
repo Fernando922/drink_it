@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import { FlatList } from 'react-native';
 import { Container } from './styles';
 import DrinkCard from '../../components/drinkCard';
@@ -10,6 +10,7 @@ export default function Drinks() {
   const [loading, setLoading] = useState(true);
   const [drinks, setDrinks] = useState([]);
   const route = useRoute();
+  const navigation = useNavigation();
 
   useEffect(() => {
     setLoading(true);
@@ -18,6 +19,7 @@ export default function Drinks() {
 
       if (route.params) {
         query = route.params.query;
+        navigation.setOptions({ title: route.params.title });
       }
       return api
         .get(`/filter.php?${query}`)

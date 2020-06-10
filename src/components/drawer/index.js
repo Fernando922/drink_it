@@ -22,9 +22,18 @@ const profileImage = require('../../assets/images/splash.jpg');
 
 export default function Drawer({ navigation }) {
   function selectRoute(route) {
+    const routes = {
+      'a=Alcoholic': 'Alcoholics',
+      'a=Non_Alcoholic': 'Non Alcoholics',
+      'c=Ordinary_Drink': 'Ordinary Drinks',
+      'c=Cocktail': 'Cocktails',
+      'g=Cocktail_glass': 'Cocktail Glass',
+      'g=Champagne_flute': 'Champagne Flute',
+    };
+
     navigation.navigate('Main', {
       screen: 'Drinks',
-      params: { query: route },
+      params: { query: route, title: routes[route] },
     });
   }
 
@@ -62,7 +71,7 @@ export default function Drawer({ navigation }) {
           <TextButtonRoute>Alcoholics</TextButtonRoute>
         </ButtonRoute>
         <ButtonRoute onPress={() => selectRoute('a=Non_Alcoholic')}>
-          <TextButtonRoute>Non Alcoholic</TextButtonRoute>
+          <TextButtonRoute>Non Alcoholics</TextButtonRoute>
         </ButtonRoute>
         <ButtonRoute onPress={() => selectRoute('c=Ordinary_Drink')}>
           <TextButtonRoute>Ordinary Drinks</TextButtonRoute>
