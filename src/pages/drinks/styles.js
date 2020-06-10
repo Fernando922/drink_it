@@ -5,7 +5,3 @@ export const Container = styled.View`
   flex: 1;
   background-color: ${theme.colors.background};
 `;
-
-export const Scroll = styled.ScrollView.attrs({
-  showsVerticalScrollIndicator: false,
-})``;
