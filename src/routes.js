@@ -29,7 +29,11 @@ const MainStack = ({ navigation }) => (
         ),
       }}
     />
-    <Stack.Screen name="DrinkDetail" component={DrinkDetail} />
+    <Stack.Screen
+      name="DrinkDetail"
+      component={DrinkDetail}
+      options={{ headerBackTitle: null, title: '' }}
+    />
   </Stack.Navigator>
 );
 
@@ -48,7 +52,11 @@ const StackSearch = ({ navigation }) => (
         ),
       }}
     />
-    <Stack.Screen name="DrinkDetail" component={DrinkDetail} />
+    <Stack.Screen
+      name="DrinkDetail"
+      component={DrinkDetail}
+      options={{ headerBackTitle: null, stitle: '' }}
+    />
   </Stack.Navigator>
 );
 

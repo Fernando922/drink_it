@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
@@ -17,6 +17,7 @@ import api from '../../services/api';
 
 export default function DrinkDetail() {
   const route = useRoute();
+  const navigation = useNavigation();
 
   const [drink, setDrink] = useState({});
   const [loading, setLoading] = useState(true);
@@ -24,6 +25,8 @@ export default function DrinkDetail() {
   const [measures, setMeasures] = useState([]);
 
   function formatData(selectedDrink) {
+    navigation.setOptions({ title: selectedDrink.strDrink });
+
     const filteredIngredients = [];
     const filteredMeasures = [];
 
