@@ -16,6 +16,25 @@ export const ContainerImage = styled.View`
   margin-top: 16px;
 `;
 
+export const ShareButton = styled.TouchableOpacity`
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  z-index: 1;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  background-color: ${theme.colors.background};
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ShareIcon = styled(Icon).attrs({
+  size: 32,
+  name: 'share-variant',
+  color: theme.colors.secondary,
+})``;
+
 export const Scroll = styled.ScrollView``;
 
 export const Image = styled.Image.attrs({

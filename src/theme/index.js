@@ -2,8 +2,8 @@ const theme = {
   font: 'BalsamiqSans-Regular',
   fontBold: 'BalsamiqSans-Bold',
   colors: {
-    primary: '#000',
-    secondary: '#751269',
+    primary: '#0F0007',
+    secondary: '#5c002b',
     background: '#FFF',
     gray: '#bbbbbb',
   },

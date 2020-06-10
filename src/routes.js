@@ -15,7 +15,14 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const MainStack = ({ navigation }) => (
-  <Stack.Navigator>
+  <Stack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: theme.colors.primary,
+      },
+      headerTintColor: theme.colors.background,
+    }}
+  >
     <Stack.Screen
       name="Drinks"
       component={Drinks}
@@ -24,7 +31,12 @@ const MainStack = ({ navigation }) => (
         headerTitleStyle: { fontFamily: theme.font },
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <Icon name="menu" size={24} style={{ marginLeft: 16 }} />
+            <Icon
+              name="menu"
+              size={24}
+              style={{ marginLeft: 16 }}
+              color={theme.colors.background}
+            />
           </TouchableOpacity>
         ),
       }}
@@ -38,7 +50,14 @@ const MainStack = ({ navigation }) => (
 );
 
 const StackSearch = ({ navigation }) => (
-  <Stack.Navigator>
+  <Stack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: theme.colors.primary,
+      },
+      headerTintColor: theme.colors.background,
+    }}
+  >
     <Stack.Screen
       name="SearchDrinks"
       component={SearchDrinks}
@@ -47,7 +66,12 @@ const StackSearch = ({ navigation }) => (
         headerTitleStyle: { fontFamily: theme.font },
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <Icon name="menu" size={24} style={{ marginLeft: 16 }} />
+            <Icon
+              name="menu"
+              size={24}
+              style={{ marginLeft: 16 }}
+              color={theme.colors.background}
+            />
           </TouchableOpacity>
         ),
       }}

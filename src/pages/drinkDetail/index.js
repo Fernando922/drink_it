@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Share from 'react-native-share';
+import RNFetchBlob from 'rn-fetch-blob';
 import {
   Container,
   TitleInfo,
@@ -11,6 +13,8 @@ import {
   ContainerInfo,
   TextInfo,
   IngredientContainer,
+  ShareButton,
+  ShareIcon,
 } from './styles';
 import Loading from '../../components/loading';
 import api from '../../services/api';
@@ -66,10 +70,43 @@ export default function DrinkDetail() {
       );
   }, []);
 
+  function shareImage(imageLink) {
+    const { fs } = RNFetchBlob;
+    let imagePath = null;
+    const link = imageLink;
+
+    function sendImage(base64) {
+      Share.open({
+        title: 'Share file',
+        subject: 'Hey! Take a look at this drink!',
+        url: base64,
+      })
+        .then(() => {
+          return fs.unlink(imagePath);
+        })
+        .catch(() => {});
+    }
+
+    RNFetchBlob.config({
+      fileCache: true,
+    })
+      .fetch('GET', link)
+      .then((resp) => {
+        imagePath = resp.path();
+        return resp.readFile('base64');
+      })
+      .then((base64Data) => {
+        sendImage(`data:image/jpeg;base64,${base64Data}`);
+      });
+  }
+
   return (
     <Loading active={loading}>
       <Container>
         <ContainerImage>
+          <ShareButton onPress={() => shareImage(drink.strDrinkThumb)}>
+            <ShareIcon />
+          </ShareButton>
           <Image source={{ uri: drink.strDrinkThumb }} />
         </ContainerImage>
         <Scroll>
