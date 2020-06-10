@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import { Container, Load } from './styles';
 
 export default function Loading({ active, children }) {
-  return <Container>{active ? <Load /> : children}</Container>;
+  return active ? (
+    <Container>
+      <Load />
+    </Container>
+  ) : (
+    children
+  );
 }
 
 Loading.propTypes = {

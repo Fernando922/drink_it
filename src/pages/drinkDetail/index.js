@@ -1,10 +1,95 @@
-import React from 'react';
-import { Container, Title } from './styles';
+import React, { useEffect, useState } from 'react';
+import { useRoute } from '@react-navigation/native';
+import { Alert } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {
+  Container,
+  TitleInfo,
+  ContainerImage,
+  Image,
+  Scroll,
+  ContainerInfo,
+  TextInfo,
+  IngredientContainer,
+} from './styles';
+import Loading from '../../components/loading';
+import api from '../../services/api';
 
 export default function DrinkDetail() {
+  const route = useRoute();
+
+  const [drink, setDrink] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [ingredients, setIngredients] = useState([]);
+  const [measures, setMeasures] = useState([]);
+
+  function formatData(selectedDrink) {
+    const filteredIngredients = [];
+    const filteredMeasures = [];
+
+    for (let i = 1; i <= 15; i += 1) {
+      if (selectedDrink[`strIngredient${i}`]) {
+        filteredIngredients.push({
+          id: i - 1,
+          name: selectedDrink[`strIngredient${i}`],
+        });
+      }
+
+      if (selectedDrink[`strMeasure${i}`]) {
+        filteredMeasures.push({
+          id: i - 1,
+          name: selectedDrink[`strMeasure${i}`],
+        });
+      }
+    }
+
+    setMeasures(filteredMeasures);
+    setIngredients(filteredIngredients);
+    setDrink(selectedDrink);
+  }
+
+  useEffect(() => {
+    if (Object.keys(drink).length > 0) {
+      setLoading(false);
+    }
+  }, [drink]);
+
+  useEffect(() => {
+    api
+      .get(`/lookup.php?i=${route.params.id}`)
+      .then((res) => formatData(res.data.drinks[0]))
+      .catch(() =>
+        Alert.alert('Ops!', 'An error occurred please try again later')
+      );
+  }, []);
+
   return (
-    <Container>
-      <Title>Drink Detail</Title>
-    </Container>
+    <Loading active={loading}>
+      <Container>
+        <ContainerImage>
+          <Image source={{ uri: drink.strDrinkThumb }} />
+        </ContainerImage>
+        <Scroll>
+          <ContainerInfo style={{ elevation: 6 }}>
+            <TitleInfo>Ingredients</TitleInfo>
+            {ingredients &&
+              ingredients.map((ingredient) => (
+                <IngredientContainer key={ingredient.id}>
+                  <Icon name="circle-small" size={24} />
+                  <TextInfo>{`${ingredient.name} ${
+                    measures[ingredient.id]
+                      ? `( ${measures[ingredient.id].name})`
+                      : ''
+                  }`}</TextInfo>
+                </IngredientContainer>
+              ))}
+          </ContainerInfo>
+          <ContainerInfo style={{ elevation: 6 }}>
+            <TitleInfo>Prepare Mode</TitleInfo>
+            <TextInfo center>{drink.strInstructions}</TextInfo>
+          </ContainerInfo>
+        </Scroll>
+      </Container>
+    </Loading>
   );
 }

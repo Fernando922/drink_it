@@ -6,7 +6,6 @@ export const Container = styled.View`
   background-color: ${theme.colors.background};
 `;
 
-export const Title = styled.Text`
-  font-size: 16px;
-  font-family: ${theme.font};
-`;
+export const Scroll = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false,
+})``;

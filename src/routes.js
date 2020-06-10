@@ -5,8 +5,8 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import PropTypes from 'prop-types';
-import Categories from './pages/categories';
 import Drinks from './pages/drinks';
+import DrawerLayout from './components/drawer';
 import DrinkDetail from './pages/drinkDetail';
 import SearchDrinks from './pages/searchDrinks';
 import theme from './theme';
@@ -17,9 +17,10 @@ const Drawer = createDrawerNavigator();
 const MainStack = ({ navigation }) => (
   <Stack.Navigator>
     <Stack.Screen
-      name="Categories"
-      component={Categories}
+      name="Drinks"
+      component={Drinks}
       options={{
+        title: 'Drink It!',
         headerTitleStyle: { fontFamily: theme.font },
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
@@ -28,7 +29,6 @@ const MainStack = ({ navigation }) => (
         ),
       }}
     />
-    <Stack.Screen name="Drinks" component={Drinks} />
     <Stack.Screen name="DrinkDetail" component={DrinkDetail} />
   </Stack.Navigator>
 );
@@ -39,10 +39,11 @@ const StackSearch = ({ navigation }) => (
       name="SearchDrinks"
       component={SearchDrinks}
       options={{
+        title: 'Find your drink!',
         headerTitleStyle: { fontFamily: theme.font },
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <Icon name="menu" size={24} />
+            <Icon name="menu" size={24} style={{ marginLeft: 16 }} />
           </TouchableOpacity>
         ),
       }}
@@ -52,7 +53,10 @@ const StackSearch = ({ navigation }) => (
 );
 
 const App = () => (
-  <Drawer.Navigator initialRouteName="Main">
+  <Drawer.Navigator
+    initialRouteName="Main"
+    drawerContent={(props) => <DrawerLayout {...props} />}
+  >
     <Drawer.Screen name="Main" component={MainStack} />
     <Drawer.Screen name="Search" component={StackSearch} />
   </Drawer.Navigator>

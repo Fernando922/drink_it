@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container, Title } from './styles';
 
-export default function Categories() {
+export default function Drawer() {
   return (
     <Container>
-      <Title>Categories</Title>
+      <Title>Drawer</Title>
     </Container>
   );
 }
