@@ -102,11 +102,11 @@ const StackSearch = ({ navigation }) => (
 
 const App = () => (
   <Drawer.Navigator
-    initialRouteName="Main"
+    initialRouteName="Search"
     drawerContent={(props) => <DrawerLayout {...props} />}
   >
-    <Drawer.Screen name="Main" component={MainStack} />
     <Drawer.Screen name="Search" component={StackSearch} />
+    <Drawer.Screen name="Main" component={MainStack} />
   </Drawer.Navigator>
 );
 
