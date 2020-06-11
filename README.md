@@ -42,11 +42,11 @@ Project developed using api https://www.thecocktaildb.com/
 ## :thinking: How to use?
 
 ```sh
-yarn (or npm i)
+yarn || npm i
 ```
 
 ```sh
-yarn android (or yarn ios if you use a macosx and want to run on ios)
+yarn android || npm run android (or change to ios if you use a macosx)
 ```
 
 ## :memo: License
