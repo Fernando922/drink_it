@@ -17,8 +17,6 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const MainStack = ({ navigation }) => {
-  const { delay } = useAuth();
-
   return (
     <Stack.Navigator
       screenOptions={{
@@ -28,39 +26,29 @@ const MainStack = ({ navigation }) => {
         headerTintColor: theme.colors.background,
       }}
     >
-      {delay ? (
-        <Stack.Screen
-          name="Splash"
-          component={Splash}
-          options={{ headerShown: false }}
-        />
-      ) : (
-        <>
-          <Stack.Screen
-            name="Drinks"
-            component={Drinks}
-            options={{
-              title: 'Drink It!',
-              headerTitleStyle: { fontFamily: theme.font },
-              headerLeft: () => (
-                <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                  <Icon
-                    name="menu"
-                    size={24}
-                    style={{ marginLeft: 16 }}
-                    color={theme.colors.background}
-                  />
-                </TouchableOpacity>
-              ),
-            }}
-          />
-          <Stack.Screen
-            name="DrinkDetail"
-            component={DrinkDetail}
-            options={{ headerBackTitle: null, title: '' }}
-          />
-        </>
-      )}
+      <Stack.Screen
+        name="Drinks"
+        component={Drinks}
+        options={{
+          title: 'Drink It!',
+          headerTitleStyle: { fontFamily: theme.font },
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+              <Icon
+                name="menu"
+                size={24}
+                style={{ marginLeft: 16 }}
+                color={theme.colors.background}
+              />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="DrinkDetail"
+        component={DrinkDetail}
+        options={{ headerBackTitle: null, title: '' }}
+      />
     </Stack.Navigator>
   );
 };
@@ -100,15 +88,24 @@ const StackSearch = ({ navigation }) => (
   </Stack.Navigator>
 );
 
-const App = () => (
-  <Drawer.Navigator
-    initialRouteName="Search"
-    drawerContent={(props) => <DrawerLayout {...props} />}
-  >
-    <Drawer.Screen name="Search" component={StackSearch} />
-    <Drawer.Screen name="Main" component={MainStack} />
-  </Drawer.Navigator>
-);
+const App = () => {
+  const { delay } = useAuth();
+
+  if (delay) {
+    return <Splash />;
+  }
+
+  return (
+    <Drawer.Navigator
+      initialRouteName="Main"
+      drawerContent={(props) => <DrawerLayout {...props} />}
+      drawerType="back"
+    >
+      <Drawer.Screen name="Main" component={MainStack} />
+      <Drawer.Screen name="Search" component={StackSearch} />
+    </Drawer.Navigator>
+  );
+};
 
 export default App;
 

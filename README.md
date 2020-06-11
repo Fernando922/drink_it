@@ -11,7 +11,7 @@
 
 ## :rocket: Project
 
-:globe_with_meridians: 
+:globe_with_meridians:
 Project developed using api https://www.thecocktaildb.com/
 
 ## Preview
@@ -20,9 +20,11 @@ Project developed using api https://www.thecocktaildb.com/
 <img src="./.github/mobile1.png" width="250" />
 <img src="./.github/mobile2.png" width="250" />
 <img src="./.github/mobile3.png" width="250" />
+<img src="./.github/mobile4.png" width="250" />
 </div>
 
 ## :computer: Technologies
+
 - [React Native](https://facebook.github.io/react-native/)
 - [React Navigation](https://reactnavigation.org/)
 - [Axios](https://github.com/axios/axios)
@@ -46,7 +48,6 @@ yarn (or npm i)
 ```sh
 yarn android (or yarn ios if you use a macosx and want to run on ios)
 ```
-
 
 ## :memo: License
 
