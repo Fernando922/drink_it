@@ -13,7 +13,6 @@ export const Container = styled.TouchableOpacity.attrs({
   margin-bottom: 12px;
   flex-direction: row;
   overflow: hidden;
-  box-shadow: 1px 1px 1px ${theme.colors.gray};
 `;
 
 export const ContainerImage = styled.View`

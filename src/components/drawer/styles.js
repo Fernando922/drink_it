@@ -1,10 +1,13 @@
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Platform } from 'react-native';
 import theme from '../../theme';
+import { STATUS_BAR_IOS } from '../../utils/constants';
 
 export const Container = styled.View`
   flex: 1;
   background-color: ${theme.colors.primary};
+  padding-top: ${Platform.OS === 'ios' ? STATUS_BAR_IOS : 0};
 `;
 
 export const Title = styled.Text`

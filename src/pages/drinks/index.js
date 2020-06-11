@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { FlatList } from 'react-native';
-import { Container } from './styles';
+import { Container, CardContainer } from './styles';
 import DrinkCard from '../../components/drinkCard';
 import Loading from '../../components/loading';
 import api from '../../services/api';
@@ -37,12 +37,14 @@ export default function Drinks() {
           <FlatList
             data={drinks}
             renderItem={({ item }) => (
-              <DrinkCard
-                key={item.idDrink}
-                id={item.idDrink}
-                image={item.strDrinkThumb}
-                drinkName={item.strDrink}
-              />
+              <CardContainer>
+                <DrinkCard
+                  key={item.idDrink}
+                  id={item.idDrink}
+                  image={item.strDrinkThumb}
+                  drinkName={item.strDrink}
+                />
+              </CardContainer>
             )}
             keyExtractor={(item) => item.idDrink}
           />

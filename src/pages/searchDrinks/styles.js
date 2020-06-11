@@ -7,6 +7,10 @@ export const Container = styled.View`
   background-color: ${theme.colors.background};
 `;
 
+export const CardContainer = styled.View`
+  box-shadow: 1px 1px 1px ${theme.colors.gray};
+`;
+
 export const ContainerInput = styled.View`
   height: 40px;
   flex-direction: row;

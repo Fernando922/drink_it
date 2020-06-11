@@ -10,6 +10,7 @@ import {
   RadioContent,
   RadioGroup,
   OptionText,
+  CardContainer,
 } from './styles';
 import DrinkCard from '../../components/drinkCard';
 import Loading from '../../components/loading';
@@ -96,12 +97,14 @@ export default function Drinks() {
           <FlatList
             data={drinks}
             renderItem={({ item }) => (
-              <DrinkCard
-                key={item.idDrink}
-                id={item.idDrink}
-                image={item.strDrinkThumb}
-                drinkName={item.strDrink}
-              />
+              <CardContainer>
+                <DrinkCard
+                  key={item.idDrink}
+                  id={item.idDrink}
+                  image={item.strDrinkThumb}
+                  drinkName={item.strDrink}
+                />
+              </CardContainer>
             )}
             keyExtractor={(item) => item.idDrink}
           />
