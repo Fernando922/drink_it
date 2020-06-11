@@ -20,6 +20,7 @@ Project developed using api https://www.thecocktaildb.com/
 <img src="./.github/mobile1.png" width="250" />
 <img src="./.github/mobile2.png" width="250" />
 <img src="./.github/mobile3.png" width="250" />
+<img src="./.github/mobile4.png" width="250" />
 </div>
 
 ## :computer: Technologies
