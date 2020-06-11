@@ -46,7 +46,7 @@ yarn || npm i
 ```
 
 ```sh
-yarn android || npm run android (or change to ios if you use a macosx)
+yarn android || npm run android (or change to ios if you want to run on ios)
 ```
 
 ## :memo: License
